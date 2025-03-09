@@ -1,31 +1,42 @@
 # Управление заказами для кафе
 
-Это Django-приложение для управления заказами в кафе. Оно позволяет добавлять, редактировать, удалять заказы, изменять их статус и рассчитывать выручку.
+Это Django-приложение для управления заказами в кафе. 
+Оно позволяет добавлять, редактировать, удалять заказы, изменять их статус и рассчитывать выручку.
 
 ## Установка
 
-1. Клонируйте репозиторий:
-   ```bash
-   git clone https://github.com/Zlatokrilaya/cafe_management.git
-   cd ваш-репозиторий
-2. Создайте виртуальное окружение:
-python -m venv venv
-source venv/bin/activate  # Для Linux/MacOS
-venv\Scripts\activate     # Для Windows
+1. Скачайте файл cafe_management.rar
 
-3.Установите зависимости:
-pip install -r requirements.txt
+2. Создайте проект Django:
+Откройте терминал и выполните следующие команды:
+django-admin startproject cafe_management
+cd cafe_management
+python manage.py startapp orders
 
-4. Примените миграции:
+3. Настройка базы данных:
+В файле settings.py проекта (cafe_management/settings.py) убедитесь, что используется SQLite:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+3. Установите Миграции:
+Выполните миграции для создания таблицы в базе данных:
+python manage.py makemigrations
 python manage.py migrate
 
-5. Создайте суперпользователя (опционально):
-python manage.py createsuperuser
-
-6. Запустите сервер:
+4. Запуск и тестирование
+Выполните команду для запуска сервера:
 python manage.py runserver
 
-7. Откройте приложение в браузере:
+Тестирование:
+Откройте браузер и перейдите по адресу http://127.0.0.1:8000/orders/. 
+Проверьте функционал добавления, удаления и поиска заказов.
+
+
+5. Откройте приложение в браузере:
 http://127.0.0.1:8000/
 
 Использование
@@ -52,6 +63,31 @@ http://127.0.0.1:8000/
 Перейдите на страницу расчёта выручки (/revenue/).
 Нажмите "Рассчитать выручку".
 
-Зависимости
+#Зависимости
 Django
 Bootstrap (для стилей)
+
+#Карта проекта:
+cafe_management/
+├── cafe_management/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+├── orders/
+│   ├── migrations/
+│   ├── templates/
+│   │   └── orders/
+│   │       ├── order_list.html
+│   │       └── add_order.html
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── manage.py
+└── db.sqlite3
